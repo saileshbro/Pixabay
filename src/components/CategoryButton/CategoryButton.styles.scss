@@ -1,28 +1,48 @@
-button.category-button {
-  height: 72px;
-  padding: 10px;
-  outline: none;
-  border: none;
-  border-radius: 8px;
-  display: inline-flex;
+.button-wrapper {
+  display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  box-sizing: border-box;
-  cursor: pointer;
-  .capital {
-    font-size: 34px;
-    // padding-left: 6px;
+  margin-right: 12px;
+  align-items: center;
+
+  button.category-button {
+    height: 72px;
+    padding: 10px;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    box-sizing: border-box;
+    cursor: pointer;
+    position: relative;
+
+    .capital {
+      font-size: 34px;
+      // padding-left: 6px;
+    }
+
+    .label {
+      font-size: 14px;
+    }
+
+    .capital,
+    .label {
+      display: block;
+      text-transform: capitalize;
+      font-family: 'Work Sans';
+      color: white;
+      text-align: start;
+    }
   }
-  .label {
-    font-size: 12px;
-  }
-  .capital,
-  .label {
-    display: block;
-    text-transform: capitalize;
-    font-family: 'Work Sans';
-    color: white;
-    text-align: start;
+
+
+  .selected-line {
+    margin-top: 6px;
+    width: 80%;
+    height: 6px;
+    border-radius: 8px;
+
   }
 }
