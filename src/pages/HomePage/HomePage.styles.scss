@@ -1,5 +1,8 @@
 section#home-page {
   padding: 36px 24px;
+  height: 100vh;
+  box-sizing: border-box;
+  width: 100vw;
   .title {
     font-family: 'Work Sans';
     font-size: 32;
@@ -57,5 +60,11 @@ section#home-page {
       align-items: center;
       flex-direction: column;
     }
+  }
+  .spinner-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
   }
 }
