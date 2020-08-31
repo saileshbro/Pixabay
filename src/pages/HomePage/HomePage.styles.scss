@@ -66,5 +66,8 @@ section#home-page {
     justify-content: center;
     align-items: center;
     height: 50vh;
+    &-min {
+      height: 20vh;
+    }
   }
 }

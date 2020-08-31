@@ -24,11 +24,22 @@ section#image-page {
       background-color: white;
       box-shadow: 0 3px 12px #00000066;
     }
+    &.spinner {
+      right: 24px;
+      bottom: 24px;
+    }
   }
-  .image-preview-full {
+  .image-preview-wrapper {
+    display: flex;
+    flex-direction: column;
     width: 100%;
-    margin: 0 4px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 4px;
+    .image-preview-full {
+      width: 99%;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+      &.image-preview-full-real {
+        display: none;
+      }
+    }
   }
 }

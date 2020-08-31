@@ -5,22 +5,25 @@ import CategoryColors from './../../utils/colors'
 import SearchIcon from '../../assets/icons/search.svg'
 import Masonry from 'react-masonry-css'
 import ImageBox from './../../components/ImageBox/ImageBox.component'
-import Spinner from './../../components/Spinner/Spinner'
 import categories from './../../data/categories'
+import { CircleLoader, PulseLoader } from 'react-spinners'
 export const HomePage = ({
   onImagePressed,
   category,
   images,
   loading,
+  paginating,
   setSearch,
   setCategory,
   setScroll,
+  setImages,
   scrollPosition: { horizontal, vertical },
 }) => {
   const onSearchComplete = e => {
     const keyCode = e.keyCode || e.which
-    console.log(e)
+
     if (keyCode === 13) {
+      setImages({ [category]: [] })
       setSearch(e.target.value)
     }
   }
@@ -58,7 +61,7 @@ export const HomePage = ({
       </div>
       {loading && (
         <div className='spinner-wrapper'>
-          <Spinner />
+          <CircleLoader color='#d54062' />
         </div>
       )}
       {!loading && (
@@ -83,6 +86,11 @@ export const HomePage = ({
             />
           ))}
         </Masonry>
+      )}
+      {!loading && paginating && (
+        <div className='spinner-wrapper spinner-wrapper-min'>
+          <PulseLoader color='#d54062' size={10} margin={5} />
+        </div>
       )}
     </section>
   )

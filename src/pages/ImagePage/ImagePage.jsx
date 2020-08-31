@@ -3,8 +3,11 @@ import backButton from '../../assets/icons/back.svg'
 import downloadButton from '../../assets/icons/download.svg'
 import './ImagePage.styles.scss'
 import ImagePreview from './../../components/ImagePreview/ImagePreview.component'
+import { BounceLoader } from 'react-spinners'
 export default function ImagePage({ image, onBackPressed }) {
+  const [loading, setLoading] = React.useState(false)
   const downloadImage = () => {
+    setLoading(true)
     return new Promise(function (resolve, reject) {
       var xhr = new XMLHttpRequest()
       xhr.open('GET', image.largeImageURL, true)
@@ -20,7 +23,8 @@ export default function ImagePage({ image, onBackPressed }) {
           tag.download = `pixelbay_${image.id}.${type}`
           tag.click()
           document.body.removeChild(tag)
-          console.log(xhr.response)
+
+          setLoading(false)
           resolve(xhr.response.type)
         } else {
           reject({
@@ -46,17 +50,23 @@ export default function ImagePage({ image, onBackPressed }) {
         alt='Back Button'
         onClick={onBackPressed && onBackPressed}
       />
-      <ImagePreview alt={image.tags} previewUrl={image.largeImageURL} />
-      <div className='button download-button'>
-        <img
-          src={downloadButton}
-          alt='Download Button'
-          onClick={async () => {
-            const resp = await downloadImage()
-            console.log(resp)
-          }}
-        />
-      </div>
+      <ImagePreview
+        alt={image.tags}
+        previewUrl={image.largeImageURL}
+        placeHolderUrl={image.previewURL}
+      />
+      {loading && (
+        <div className='button spinner'>{<BounceLoader color='#d54062' />}</div>
+      )}
+      {!loading && (
+        <div className='button download-button'>
+          <img
+            src={downloadButton}
+            alt='Download Button'
+            onClick={downloadImage}
+          />
+        </div>
+      )}
     </section>
   )
 }
